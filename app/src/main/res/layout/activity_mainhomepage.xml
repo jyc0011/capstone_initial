@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundlist01"
+    android:alpha="0.6"
+    tools:context=".MainHomePage">
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="215dp"
+        android:layout_height="75dp"
+        android:text="로그인"
+        android:fontFamily="@font/kyoboson"
+        android:background = "@drawable/btn_main_register"
+        android:drawableLeft="@drawable/ic_dog"
+        android:textSize="32sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="215dp"
+        android:layout_height="75dp"
+        android:text="회원가입"
+        android:fontFamily="@font/kyoboson"
+        android:background = "@drawable/btn_main_register"
+        android:drawableLeft="@drawable/ic_dog"
+        android:textSize="32sp"
+        tools:ignore="InvalidId,MissingConstraints"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="522dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
