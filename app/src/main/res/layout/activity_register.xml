@@ -36,7 +36,7 @@
         android:id="@+id/join_pwck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="236dp"
+        android:layout_marginBottom="188dp"
         android:ems="10"
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
@@ -57,7 +57,7 @@
         android:id="@+id/join_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="비밀번호"
         android:inputType="textPassword"
@@ -67,36 +67,35 @@
     <Button
         android:id="@+id/check_button"
         style="@style/defaultButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="96dp"
+        android:layout_width="80dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="20dp"
         android:text="확인"
-        app:layout_constraintBaseline_toBaselineOf="@+id/join_email"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="311dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/join_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="이름"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/join_email"
-        app:layout_constraintEnd_toEndOf="@+id/check_button" />
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="250dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/register_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="72dp"
         android:ems="10"
         android:hint="관리자코드혹은사업자등록번호 "
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/join_email"
-        app:layout_constraintEnd_toEndOf="@+id/check_button" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="133dp"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -104,21 +103,29 @@
         android:layout_height="43dp"
         app:layout_constraintEnd_toEndOf="@+id/register_code"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="136dp" />
+        tools:layout_editor_absoluteY="191dp" />
 
     <EditText
         android:id="@+id/join_email"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="209dp"
+        android:layout_height="56dp"
         android:ems="10"
         android:hint="이메일"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/join_password"
-        app:layout_constraintEnd_toStartOf="@+id/check_button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/join_name" />
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="311dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/check_email"
+        android:layout_width="209dp"
+        android:layout_height="56dp"
+        android:ems="10"
+        android:hint="이메일 인증 확인"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="367dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/delete"

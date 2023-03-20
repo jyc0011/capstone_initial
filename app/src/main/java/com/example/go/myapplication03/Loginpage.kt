@@ -17,23 +17,15 @@ import kotlinx.android.synthetic.main.activity_loginpage.*
 import kotlinx.android.synthetic.main.activity_mypetregister.*
 import kotlinx.android.synthetic.main.mypetregisterdialog.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Loginpage : AppCompatActivity() {
-    val DATABASE_VERSION = 1
-    val DATABASE_NAME = "LocalDB.db"
-    //권한 플래그값 정의
-    val FLAG_PERM_CAMERA = 98
-    val FLAG_PERM_STORAGE = 99
-
-    //카메라와 갤러리를 호출하는 플래그
-    val FLAG_REQ_CAMERA = 101
-    val FLAG_REA_STORAGE = 102
-    val TAG = "TAG_MyPetRegisterActivity"
-    var imagePath : String? = null
+    var connectnode : String? = null
     var id : String? = null
+    var idcheckanswer : String? = null
     lateinit var mRetrofit : Retrofit
     lateinit var mRetrofitAPI: RetrofitAPI
     lateinit var mCallChain : retrofit2.Call<JsonObject> // Json형식의 데이터를 요청하는 객체입니다.
@@ -41,22 +33,42 @@ class Loginpage : AppCompatActivity() {
     private lateinit var localDB: LocalDB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_loginpage)
-        // 뷰바인딩 사용
-        setContentView(R.layout.activity_loginpage)
-        // SQLite 모듈 생성
-        localDB= LocalDB(this, "REGISTERED",null, DATABASE_VERSION)
-
+        setRetrofit()
         setContentView(R.layout.activity_loginpage)
         // 로그인 확인 버튼을 누를시
         check_button.setOnClickListener {
-            id = join_email.text.toString()
+            val id = join_email.text.toString()
+            // 입력한 이메일 아이디
             val passwd = join_password.text.toString()
-            val exist = localDB.logIn(id!!,passwd) // 로그인 실행
-            if(exist){ // 로그인 성공
+            // 입력한 패스워드
+            val sendPostdataloginid = DataModel02.Loginid(
+                id,
+                passwd
+            )
+            mRetrofitAPI.loginid(sendPostdataloginid).enqueue(object :
+                Callback<DataModel02.PostResult02> {
+                override fun onResponse(
+                    call: Call<DataModel02.PostResult02>,
+                    response: Response<DataModel02.PostResult02>
+                ) {
+                    Log.d("log", response.toString())
+                    Log.d("log", response.body().toString())
+                    idcheckanswer = response.body().toString()
+                }
+
+                override fun onFailure(
+                    call: Call<DataModel02.PostResult02>,
+                    t: Throwable
+                ) {
+                    // 실패
+                    Log.d("log", t.message.toString())
+                    Log.d("log", "블록 체인 서버 정보 입력에 실패하였습니다.")
+                }
+            })
+            if(idcheckanswer == "LoginOK"){
+                // 로그인 성공
                 val builder02 = AlertDialog.Builder(this)
-                builder02.setTitle("로그인 확인"
-                )
+                builder02.setTitle("로그인 확인")
                     .setMessage("로그인 정보가 확인되었습니다.")
                     .setPositiveButton("확인",
                         DialogInterface.OnClickListener { dialog_message01, Okay_button ->
@@ -82,5 +94,14 @@ class Loginpage : AppCompatActivity() {
             }
             
         }
+    }
+    private fun setRetrofit(){
+        mRetrofit = Retrofit.Builder() // Retrofit2 인터페이스 빌더 생성
+            .baseUrl(connectnode) // 인터페이스와 연결될 서버 주소입력
+            .addConverterFactory(GsonConverterFactory.create())
+            .build() // 인터페이스 생성
+
+        mRetrofitAPI = mRetrofit.create(RetrofitAPI::class.java)
+        // 위의 설정을 기반으로 Retrofit 인터페이스 생성
     }
 }

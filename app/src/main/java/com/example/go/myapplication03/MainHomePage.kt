@@ -20,7 +20,7 @@ class MainHomePage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mainhomepage)
         // 애니메이션 초기화 및 애니메이션 시작 변수 설정
-        var animationDrawable : AnimationDrawable = mainhomepage.getBackground() as AnimationDrawable
+        var animationDrawable : AnimationDrawable = mainhomepage.background as AnimationDrawable
         // 애니메이션이 들어갈 때 지속시간(2.5초)
         animationDrawable.setEnterFadeDuration(2500)
         // 애니메이션이 끝날때 지속시간(5초)

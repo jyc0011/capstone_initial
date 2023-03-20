@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundlist01"
     android:alpha="0.6"
-    tools:context=".MainHomePage">
+    tools:context=".MainHomePage"
+    android:id="@+id/mainhomepage">
 
     <Button
         android:id="@+id/login_button"

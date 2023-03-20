@@ -13,9 +13,26 @@ interface RetrofitAPI {
     @POST("/transactions/new/dog") // 블록체인 서버에 나의 강아지 정보를 등록시에 POST요청으로 실행됨.
     fun savetransaction(
         //해당 함수 요청시 Body에 나의 강아지 정보를 파라미터로 전송함.
-        @Body jsonparams: DataModel02.PostModel02 // 나의 강아지 정보 전송시에 DataModel02.PostModel02 데이터 형식의
+        @Body jsonparams: DataModel02.Registerdog // 나의 강아지 정보 전송시에 DataModel02.PostModel02 데이터 형식의
     ) : Call<DataModel02.PostResult02> // POST요청후 DatamODEL02.PostResult02의 데이터 형식으로 응답받음
-    @GET("/chain")
-    // 블록체인의 체인을 조회. 정보를 조회할때 사용된다.
-    fun getchaininfo(): Call<DataModel02.ChainResult01>
+    // 서비스 가입을 하는 정보를 보내고 가입 응답 메세지를 응답받는 객체
+    @POST("/transactions/new/id")
+    fun registerid(
+        @Body jsonparams: DataModel02.Registerid // id중복을 확인하기 위해서 자신이 입력한 id를 요청으로 전송하는 객체
+    ):Call<DataModel02.PostResult02>
+    // 가입을 위한 아이디 중복을 확인하기 위해서 가입할 아이디를 보내고 가입할 수 있는지에 대한 응답을 받는 객체
+    @POST("/chain/idsearch")
+    fun checkid(
+        @Body jsonparams: DataModel02.Searchid // id중복을 확인하기 위해서 자신이 입력한 id를 요청으로 전송하는 객체
+    ):Call<DataModel02.PostResult02>
+    // 로그인시 아이디와 비밀번호를 보내고 로그인이 되었는지에 대한 응답 메세지
+    @POST("/chain/loginsearch")
+    fun loginid(
+        @Body jsonparams: DataModel02.Loginid
+    ):Call<DataModel02.PostResult02>
+    @POST("/chain/loginsearch")
+    fun loginid(
+        @Body jsonparams: DataModel02.Loginid
+    ):Call<DataModel02.PostResult02>
+    // id중복이후 해당 결과에 대한 메세지 출력을 한다.
 }

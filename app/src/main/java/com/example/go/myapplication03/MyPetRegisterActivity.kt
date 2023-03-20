@@ -159,7 +159,7 @@ class MyPetRegisterActivity : AppCompatActivity() {
                         // 업로드한 이미지를 s3버킷 서버로 전송후 생성된 이미지 url을 가져옴.
                         val stringimageUrl : String? = uploadWithTransferUtility(Petid.text.toString() + newJpgFileName(), indogimage)
                         // 입력한 펫 이름,성별,품종,입력받은 이미지 url,이미지 해싱 데이터를 BlockChain서버에 전송.
-                        val sendPostdata01 = DataModel02.PostModel02(
+                        val sendPostdata01 = DataModel02.Registerdog(
                             emailid.toString(), // 넘겨받은 이메일 id
                             name.toString(), // 넘겨받은 사용자 성함
                             Petid.text.toString(), // 입력한 펫 이름
@@ -202,7 +202,6 @@ class MyPetRegisterActivity : AppCompatActivity() {
             openCamera()
         }
     }
-
 
     private fun openCamera() {
         //카메라 권한이 있는지 확인
@@ -375,7 +374,7 @@ class MyPetRegisterActivity : AppCompatActivity() {
     private fun setRetrofit(){
         mRetrofit = Retrofit.Builder() // Retrofit2 인터페이스 빌더 생성
             .baseUrl(getString(R.string.baseUrl)) // 인터페이스와 연결될 서버 주소입력
-            .addConverterFactory(GsonConverterFactory.create()) 
+            .addConverterFactory(GsonConverterFactory.create())
             .build() // 인터페이스 생성
 
         mRetrofitAPI = mRetrofit.create(RetrofitAPI::class.java)
